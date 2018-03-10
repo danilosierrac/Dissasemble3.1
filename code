@@ -6,23 +6,13 @@
     {block:Description}
         <meta name="description" content="{MetaDescription}" />
     {/block:Description}
-<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+<!--<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>-->
 
 <!--
-                                              
- .d8888b.  888b     d888 8888888b.  888      
-d88P  Y88b 8888b   d8888 888   Y88b 888      
-Y88b.      88888b.d88888 888    888 888      
- "Y888b.   888Y88888P888 888   d88P 888      
-    "Y88b. 888 Y888P 888 8888888P"  888      
-      "888 888  Y8P  888 888        888      
-Y88b  d88P 888   "   888 888        888      
- "Y8888P"  888       888 888        88888888 
+
 
 Update of the Disassemble 3.0 Theme for Tumblr by Georgia Harris
-www.smpldesign.co.uk
 
-Update made by Danilo Sierra from mimosa agency
 -->
 
 <!-- DEFAULT COLORS -->
@@ -57,7 +47,7 @@ a img {
 outline: none;
 }
 iframe#tumblr_controls {  
-display:none;
+/*display:none;*/
 }
 #wrapper {
 {block:PermalinkPage}
@@ -69,7 +59,6 @@ margin: 50px auto;
 #post {
 padding:40px;
 text-align:left;
-margin-left: 40px;
 }
 #post img {
 width:100%;
@@ -84,6 +73,11 @@ opacity:0.5;
 #post embed, #post iframe {
 width:100% !important;
 }
+
+#post iframe {
+    margin: 20px 20px 20px 0px;
+}
+
 #post .photoset a:first-child {
 display:block !important;
 border:0 !important;
@@ -99,18 +93,21 @@ margin:auto;
 position:fixed;
 top:20px;
 z-index:5000;
+
 }
 .follow {
 position:fixed;
 top:20px;
 right:20px;
 z-index:5000;
+
 }
 .archive {
 position:fixed;
 top:20px;
 left:20px;
 z-index:5000;
+
 }
 .message {
 position:fixed;
@@ -156,6 +153,7 @@ color:#fff;
 overflow:hidden;
 z-index:4000;
 }
+
 .corner:before {
 content:"";
 position:absolute;
@@ -171,7 +169,7 @@ display:block; width:0; /* Firefox 3.0 damage limitation */
 </style>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-<script type="text/javascript" src="http://masonry.desandro.com/js/jquery-1.7.1.min.js"></script>
+ <script type="text/javascript" src="https://unpkg.com/masonry-layout@4.2.1/dist/masonry.pkgd.min.js"></script> 
 <script type="text/javascript" src="http://static.tumblr.com/twte3d7/4Wjm5wj58/disassemble_v3.js"></script>
 
 <script type="text/javascript">
@@ -181,11 +179,11 @@ $(function() {
             $('#toTop').fadeIn();    
         } else {
             $('#toTop').fadeOut();
-    	}
-	});
-	$('#toTop').click(function() {
-		$('body,html').animate({scrollTop:0},800);
-	});	
+        }
+    });
+    $('#toTop').click(function() {
+        $('body,html').animate({scrollTop:0},800);
+    }); 
 });
 </script>
 </head>
