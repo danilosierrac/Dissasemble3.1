@@ -10,16 +10,16 @@
 <!--<link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>-->
 
 <!--
-  _    _                  _       
- | |  | |                | |      
- | |__| | _____      ____| |_   _ 
+  _    _                  _
+ | |  | |                | |
+ | |__| | _____      ____| |_   _
  |  __  |/ _ \ \ /\ / / _` | | | |
  | |  | | (_) \ V  V / (_| | |_| |
  |_|  |_|\___/ \_/\_/ \__,_|\__, |
                              __/ |
-                            |___/ 
+                            |___/
 
-                            
+
 Update by Danilo Sierra of the great Disassemble 3.0 Theme for Tumblr by Georgia Harris
 
 -->
@@ -41,7 +41,7 @@ font-family: 'Space Mono', monospace;
 color:{color:Text};
 font-size:2em;
 }
-a { 
+a {
 padding-bottom:2px;
 color:{color:Text};
 text-decoration:none;
@@ -57,7 +57,7 @@ a img {
 outline: none;
 font-family: 'Space Mono', monospace;
 }
-iframe#tumblr_controls {  
+iframe#tumblr_controls {
 /*display:none;*/
 }
 #wrapper {
@@ -179,26 +179,6 @@ display:block; width:0; /* Firefox 3.0 damage limitation */
 {CustomCSS}
 </style>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-
-<script type="text/javascript" src="https://cdn.rawgit.com/danilosierrac/Dissasemble3.1/6465828a/masonry.js"></script> 
-
-<script type="text/javascript" src="https://cdn.rawgit.com/danilosierrac/Dissasemble3.1/6465828a/themescript.js"></script>
-
-<script type="text/javascript">
-$(function() {
-    $(window).scroll(function() {
-        if($(this).scrollTop() != 0) {
-            $('#toTop').fadeIn();    
-        } else {
-            $('#toTop').fadeOut();
-        }
-    });
-    $('#toTop').click(function() {
-        $('body,html').animate({scrollTop:0},800);
-    }); 
-});
-</script>
 </head>
 
 <body>
@@ -215,7 +195,7 @@ $(function() {
 <div id="wrapper">
 
 {block:Posts}
-<div id="post" 
+<div id="post"
 {block:IndexPage}
 {block:Post1}style="width:380px"{/block:Post1}
 {block:Post2}style="width:410px"{/block:Post2}
@@ -234,7 +214,7 @@ $(function() {
 {block:Post15}style="width:250px"{/block:Post15}
 {/block:IndexPage}
 {block:PermalinkPage}style="width:500px"{/block:PermalinkPage}
-> 
+>
 
 {block:Text}
 {block:Title}<a href="{Permalink}">{Title}</a>{/block:Title}
@@ -245,7 +225,7 @@ $(function() {
 <a href="{URL}" class="link" {Target}>{Name}</a>
 {block:Description}<div class="description">{Description}</div>{/block:Description}
 {/block:Link}
-                
+
 {block:Quote}
 <a style="border:0 !important" href="{Permalink}">"{Quote}"</a>
 {block:Source}
@@ -266,7 +246,7 @@ $(function() {
 
 {block:Video}
 {block:IndexPage}<a href="{Permalink}"><div class="corner"></div></a>{/block:IndexPage}
-<div id="video"> 
+<div id="video">
 {Video-500}
 </div>
 {block:IndexPage}{block:IfShowCaptions}{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}{/block:IfShowCaptions}{/block:IndexPage}
@@ -279,22 +259,69 @@ $(function() {
 {block:IndexPage}{block:IfShowCaptions}{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}{/block:IfShowCaptions}{/block:IndexPage}
 {block:PermalinkPage}{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}{/block:PermalinkPage}
 {/block:Photoset}
-         
+
 {block:Audio}
 {block:AlbumArt}<a href="{Permalink}"><img src="{AlbumArtURL}"></a>{/block:AlbumArt}
 <div class="player">{AudioPlayerBlack}</div>
 {block:IndexPage}{block:IfShowCaptions}{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}{/block:IfShowCaptions}{/block:IndexPage}
 {block:PermalinkPage}{block:Caption}<div class="caption">{Caption}</div>{/block:Caption}{/block:PermalinkPage}
 {/block:Audio}
-         
+
 {block:IfShowTagsOnIndexPage}{block:IndexPage}{block:Date}Posted {TimeAgo} and has {NoteCountWithLabel}{block:HasTags}<br>{block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}{/block:HasTags}{/block:Date}{/block:IndexPage}{/block:IfShowTagsOnIndexPage}{block:PermalinkPage}{block:Date}Posted {TimeAgo} and has {NoteCountWithLabel}{block:HasTags}<br>{block:Tags}<a href="{TagURL}">#{Tag}</a> {/block:Tags}{/block:HasTags}{/block:Date}{/block:PermalinkPage}
-         
+
 </div>
 {/block:Posts}
 
 {block:NextPage}<div id="page-nav"><a href="{NextPage}"></a>{/block:NextPage}
 
 </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+
+<script type="text/javascript">
+$(function() {
+  var $container = $("#wrapper");
+
+  $container.masonry({
+      itemSelector: "#post",
+      columnWidth: 1,
+      isFitWidth: true,
+      isAnimated: true
+  });
+
+  // get Masonry instance
+  var msnry = $container.data("masonry");
+
+  // init Infinite Scroll
+  $container.infiniteScroll(
+    {
+      // Infinite Scroll options...
+      path: ".pagination__next",
+      append: "#post",
+      outlayer: msnry,
+      history: false
+    }
+  );
+});
+</script>
+
+<script type="text/javascript">
+$(function() {
+    $(window).scroll(function() {
+        if($(this).scrollTop() != 0) {
+            $('#toTop').fadeIn();
+        } else {
+            $('#toTop').fadeOut();
+        }
+    });
+    $('#toTop').click(function() {
+        $('body,html').animate({scrollTop:0},800);
+    });
+});
+</script>
 
 </body>
 </html>
